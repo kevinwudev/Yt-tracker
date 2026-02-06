@@ -1,0 +1,12 @@
+.env
+.venv
+__pycache__/
+*.pyc
+*.m4a
+.ipynb_checkpoints
+dist/
+creds/
+src/vtt/calendar_fetch.py
+src/vtt/google_auth.py
+src/vtt/llm_sum.py
+youtube_proxy.py
