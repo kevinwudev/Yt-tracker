@@ -23,16 +23,20 @@ WAITING_LIST = json.loads(WAITING_LIST)
 
 if "GITHUB_WORKSPACE" in os.environ: data_path = Path(os.environ["GITHUB_WORKSPACE"]) / "data"
 
+
 def fetch_channel_handle() -> dict:
 
-    mapping_path = data_path / "channels.json"
-    if mapping_path.exists():
-        with open(mapping_path, "r", encoding="utf-8") as f:
-            mapping = json.load(f)
-        return mapping
-    else:
-        return {}
-    
+    channels_path = data_path / "channels.json"
+    channels_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if not channels_path.exists():
+        channels_path.write_text(json.dumps({}, ensure_ascii=False, indent=4), encoding="utf-8")
+
+    # 讀取 JSON
+    with channels_path.open("r", encoding="utf-8") as f:
+        channels = json.load(f)
+
+    return channels 
 
 def get_channel_id_by_handle(youtube, channel_handle: str) -> str | None:
     """
