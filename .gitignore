@@ -5,8 +5,4 @@ __pycache__/
 *.m4a
 .ipynb_checkpoints
 dist/
-creds/
-src/vtt/calendar_fetch.py
-src/vtt/google_auth.py
-src/vtt/llm_sum.py
-youtube_proxy.py
+cred/
