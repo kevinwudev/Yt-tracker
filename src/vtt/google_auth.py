@@ -25,7 +25,7 @@ SCOPES = [
 def get_google_service(
     api_name: str,
     api_version: str,
-    scopes: List[str],
+    scopes: List[str] = SCOPES,
     credentials_path=CRED,
     token_path=TOKEN,
 ):
@@ -130,8 +130,8 @@ def fetch_calendars(service, start: int = 0, end: int = 7) -> List[Dict]:
 
 
 if __name__ == "__main__":
-    gmail = get_google_service("gmail", "v1", SCOPES, CRED, TOKEN)
-    calendar = get_google_service(api_name="calendar", api_version="v3", scopes=SCOPES)
+    gmail = get_google_service("gmail", "v1")
+    calendar = get_google_service("calendar", "v3")
 
     gmail_info = fetch_emails(gmail, "newer_than:1d", 10)
     calendar_info = fetch_calendars(calendar)

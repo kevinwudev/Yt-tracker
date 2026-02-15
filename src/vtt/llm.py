@@ -11,7 +11,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
-def summarize(text: str = "", lines: int = 10):
+def summarize(text: str = "", lines: int = 5):
     """Generate context using OpenAI API based on the given prompt."""
 
     prompt = f"""
@@ -24,7 +24,7 @@ def summarize(text: str = "", lines: int = 10):
         model="gpt-4o-mini", messages=[{"role": "user", "content": prompt}]
     )
 
-    return response
+    return response.choices[0].message.content
 
 
 def transcribe_m4a(audio_path: str) -> str:
@@ -67,7 +67,7 @@ def translate(text: str = "", target_language: str = "英文") -> str:
     """Generate context using OpenAI API based on the given prompt."""
 
     prompt = f"""
-	Please translate the following content into {target_language}.
+	Please translate the following content into En if text is zh or to zh if that is En.
 	Make sure the translation stays true to the original meaning and reads naturally and smoothly.
 	It should also fit common real-world usage scenarios.
     ---
@@ -133,5 +133,5 @@ def summarize_gmail(client: OpenAI, email_pack: str) -> str | None:
 
 
 if __name__ == "__main__":
-    result = summarize("LEsLFNugJ5Y")
-    print(result.choices[0])
+    result = summarize("test")
+    print(result)
