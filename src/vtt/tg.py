@@ -1,14 +1,8 @@
-import asyncio
-from httpx import Client
-from pydantic_core.core_schema import frozenset_schema
 from telegram import (
     Bot,
-    InlineKeyboardButton,
     Update,
     ReplyKeyboardMarkup,
-    InlineKeyboardMarkup,
 )
-from telegram._utils.defaultvalue import DEFAULT_20
 from telegram.ext import (
     ApplicationBuilder,
     ContextTypes,
@@ -20,7 +14,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from datetime import date, timedelta
-from vtt.llm import OPENAI_API_KEY, summarize, translate, rewrite
+from vtt.llm import summarize, translate, rewrite
 from vtt.google_auth import fetch_calendars, fetch_emails, get_google_service
 from openai import OpenAI
 
@@ -160,7 +154,7 @@ def call_main():
 
 
 if __name__ == "__main__":
-    text_msg = f"""TG Test"""
+    text_msg = """TG Test"""
     print(BOT_TOKEN, "\n", CHAT_ID)
     # asyncio.run(send_msg(text_msg))
     gmail = get_google_service("gmail", "v1")
